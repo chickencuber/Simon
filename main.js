@@ -135,8 +135,9 @@ const colorSounds = {
     [Color.YELLOW]: 523  // C5
 };
 
+const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
 function beep(frequency = 440, duration = 200) {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const oscillator = ctx.createOscillator();
     oscillator.type = "sine";
     oscillator.frequency.value = frequency;
