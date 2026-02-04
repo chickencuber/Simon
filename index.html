@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta charset="utf-8" />
+        <script src="https://cdn.jsdelivr.net/gh/chickencuber/jsquery@latest/jsquery.js"></script>
+        <title>SIMON</title>
+    </head>
+    <body>
+        <main>
+            <h1 id="title">SIMON</h1>
+            <div id="score">SCORE: 0</div>
+            <div id="lose" hidden>YOU LOSE</div>
+            <div id="simon-container">
+                <div class="indicator red"></div>
+                <div class="indicator green"></div>
+                <div class="indicator yellow"></div>
+                <div class="indicator blue"></div>
+                <div class="bg red"></div>
+                <div class="bg green"></div>
+                <div class="bg blue"></div>
+                <div class="bg yellow"></div>
+                <div id="simon">
+                    <div class="quadrant red"></div>
+                    <div class="quadrant green"></div>
+                    <div class="quadrant blue"></div>
+                    <div class="quadrant yellow"></div>
+                    <div id="center">START</div>
+                </div>
+            </div>
+        </main>
+        <script src="main.js"></script>
+    </body>
+</html>
+
