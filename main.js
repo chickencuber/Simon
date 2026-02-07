@@ -1,3 +1,24 @@
+const obj = new (class {
+    #lose = false;
+    #score = 0;
+
+    get lose() {
+        return this.#lose;
+    }
+    get score() {
+        return this.#score;
+    }
+    set lose(v) {
+        this.#lose = v;
+        $("#lose").props({hidden: v?null:""})
+    }
+    set score(v) {
+        this.#score = v;
+        $("#score").text(`SCORE: ${v}`);
+        document.title = `SIMON SCORE:${v}`
+    }
+})
+
 /**
     * @enum {number}
     */
@@ -51,16 +72,14 @@
 
 const ms = 250;
 
-let score = 0;
 let round = false;
 
-let lose = false;
 
 $("#center").click(() => {
     if(round) return;
     colors.length = 0;
-    score = 0;
-    lose = false;
+    obj.score = 0;
+    obj.lose = false;
     round = true;
     startround();
 })
@@ -103,11 +122,11 @@ async function startround() {
         ready = false;
         promises.length = 0;
         round = false;
-        lose = true;
+        obj.lose = true;
         return;
     }
     ready = false;
-    score++;
+    obj.score++;
     setTimeout(startround, 1000);
 }
 
@@ -118,15 +137,6 @@ async function startround() {
         beep(colorSounds[Color[color]]);
     });
 });
-
-function update() {
-    $("#score").text(`SCORE: ${score}`);
-    $("#lose").props({hidden: lose?null:""})
-    document.title = `SIMON SCORE:${score}`
-    requestAnimationFrame(update)
-}
-requestAnimationFrame(update)
-
 
 const colorSounds = {
     [Color.RED]: 261,    // C4
